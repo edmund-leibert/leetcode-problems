@@ -26,6 +26,13 @@
     "string_view": "cpp",
     "system_error": "cpp",
     "type_traits": "cpp",
-    "typeinfo": "cpp"
+    "typeinfo": "cpp",
+    "array": "cpp",
+    "bitset": "cpp",
+    "ranges": "cpp",
+    "span": "cpp",
+    "stacktrace": "cpp",
+    "valarray": "cpp",
+    "algorithm": "cpp"
   }
 }
