@@ -2,7 +2,7 @@
 #include <string>
 #include <cmath>
 
-std::string decToBin(int decimal) {
+/* std::string decToBin(int decimal) {
   std::string binary;
   while(decimal > 0) {
     binary = std::to_string(decimal % 2) + binary;
@@ -10,9 +10,9 @@ std::string decToBin(int decimal) {
   }
 
   return binary;
-}
+} */
   
-int binToDec(std::string binary) {
+/* int binToDec(std::string binary) {
     int result = 0;
     std::string binDigit = "";
     int binExponent = 0;
@@ -22,7 +22,7 @@ int binToDec(std::string binary) {
       binExponent++;
     }  
     return result;
-  }
+  } */
 
 int concatenatedBinary(int n) {
   std::string nCountBin = "";
