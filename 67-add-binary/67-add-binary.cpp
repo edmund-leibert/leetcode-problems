@@ -5,57 +5,66 @@
 #include <iostream>
 
 std::string addBinary(std::string a, std::string b) {
-    std::string binaryAns = "";
-    int carry = 0;
-    int maxSize = 0;
-    int aDigit = 0;
-    int bDigit = 0;
-    
-    if (a.size() > b.size()) {
-      maxSize =  a.size(); 
+  int aIter = a.length() - 1;
+  int bIter = b.length() - 1;
+  int maxStrLength = 0;
+  int carry = 0;
+  int aIterDigit = 0;
+  int bIterDigit =  0; 
+
+  if( a.length() > b.length() ) {
+    maxStrLength = a.length() - 1;
+  }
+  else {
+    maxStrLength = b.length() - 1;
+  }
+
+  std::string result = "";
+
+  while(maxStrLength >= 0) {
+    if ( aIter < 0 ) {
+      aIterDigit = 0;
     }
     else {
-      maxSize = b.size();
+      aIterDigit = static_cast<int>(a[aIter]) - '0';
     }
-    
-    for(int i = (maxSize - 1); i >= 0; i--) {
-        if (i >= a.size()) {
-            aDigit = 0;
-        }
-        else {
-            aDigit = a[i] - '0';
-        }
+    if ( bIter < 0 ) {
+      bIterDigit = 0;
+    }
+    else {
+      bIterDigit = static_cast<int>(b[bIter]) - '0';
+    }
 
-        if (i >= b.size()) {
-            bDigit = 0;
-        }
-        else {
-            bDigit = b[i] - '0';
-        }
-        
-        //loop through max string + 1
-        if (aDigit + bDigit + carry == 3) {
-            binaryAns = "1" + binaryAns;
-            carry = 1;
-        }
-        else if (aDigit + bDigit + carry == 2) {
-            binaryAns = "0" + binaryAns;
-            carry = 1;
-        }
-        else if (aDigit + bDigit + carry == 1) {
-            binaryAns = "1" + binaryAns;
-            carry = 0;
-        }
-        else {                         // a.currChar + bDigit + carry = 0
-            binaryAns = "0" + binaryAns;
-            carry = 0;
-        }
-        
-        if( (i == 0) && (carry = 1) ){
-            binaryAns = "1" + binaryAns;
-        }
+
+    if ( (aIterDigit + bIterDigit + carry) == 3) {
+      result = "1" + result;
+      carry = 1;
     }
-    return binaryAns;
+    else if ( (aIterDigit + bIterDigit + carry) == 2) {
+      result = "0" + result;
+      carry = 1;
+    }
+    else if ( (aIterDigit + bIterDigit + carry) == 1) {
+      result = "1" + result;
+      carry = 0;
+    }
+    else {
+      result = "0" + result;
+      carry = 0;
+    }
+
+    aIter--;
+    bIter--; 
+    maxStrLength--;
+
+    if ( maxStrLength < 0) {
+      if ( carry == 1 ) {
+        result = "1" + result;
+      }
+    }
+
+  }
+  return result;
 }
 
 int main() {
