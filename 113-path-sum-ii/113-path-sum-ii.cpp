@@ -1,5 +1,20 @@
 #include <iostream>
+#include <vector>
+#include <memory>
 #include "TreeNode.hpp"
+
+// template <class T>
+// class twoDimensionalVector {
+//   public:
+//     std::vector<std::vector<T>> twoDimensionalVectorData;
+
+//     // twoDimensionalVector() {
+//     //   T x;
+//     //   std::vector<T> a;
+//     //   a.push_back(x);
+//     //   twoDimensionalVectorData.push_back(a);
+//     // }
+// };
 
 void treeTraversalDFSPreOrder(struct TreeNode* node) {
     if(node == nullptr) {
@@ -26,9 +41,19 @@ void treeTraversalDFSPostOrder(struct TreeNode* node) {
     std::cout << node->val << " ";// // visit (node)
 }
 
+void treeTraversalRootToLeavesPaths(struct TreeNode* node, std::vector<std::vector<int>>* rootToLeavesPaths = nullptr) {
+    if(node == nullptr) {
+      return;
+    }
+    std::cout << node->val << " ";// // visit (node)
+    treeTraversalRootToLeavesPaths(node->left);
+    treeTraversalRootToLeavesPaths(node->right);
+}
+
+
 int main() {
   // Create example Tree Nodes 
-  TreeNode* root = new TreeNode (5); 
+  struct TreeNode* root =  new TreeNode (5); 
 
   // Generate more TreeNodes to be example tree
   root->left = new TreeNode (4);
@@ -50,6 +75,12 @@ int main() {
     treeTraversalDFSPostOrder(root);
     std::cout << std::endl;
   }
+
+  // Visualize rootToLeavesPath 
+  twoDimensionalVector<TreeNode*>* rootToLeavesPaths;
+  // rootToLeavesPaths->twoDimensionalVectorData.push_back();
+
+  // treeTraversalRootToLeavesPaths(root);
 
   std::cout << "Starting program..." << std::endl;
   return 0;
